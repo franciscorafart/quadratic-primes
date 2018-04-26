@@ -1,8 +1,9 @@
 let is_prime = n => {
-  if (n==2) return true
-  if (n<2) return false
-  for(let i=2;i<n;i++){
-    if (n%i == 0) return false
+  let absn = Math.abs(n)
+  if (absn==2) return true
+  if (absn<2) return false
+  for(let i=2;i<absn;i++){
+    if (absn%i == 0) return false
   }
   return true
 }
@@ -19,38 +20,35 @@ let give_array = (i,n) =>{
   return res
 }
 
-let pows = give_array(0,1000).map(n => Math.pow(n,2)) //store in memory for efficiency
+let cuadratic = (n,a,b)=> {return Math.pow(n,2)+(a*n)+b}
+let largest = (obj1, obj2) => {return obj1.consecutive_primes > obj2.consecutive_primes? obj1:obj2}
 
-let cuadratic = (n,a,b)=>{return pows[n]+(a*n)+b} //use stored variable for efficiency
-let odds = x => {return x%2!=0}
-// const negatives = arr => {return arr.map(e => e*-1)}
+//function that returns number of consecutive primes given a evaluation function
+let consecutivePrimes = (a,b,fn) => {
+  let count = 0
+  consecutive = true
+  while (consecutive){
+    if (is_prime(fn(count,a,b)))
+      count++
+    else
+      consecutive = false
+  }
+  return count
+}
 
-let a = b = give_array(-1000,1000).filter(odds);
+let a = b = give_array(-1000,1000);
 
-//for each pair of coeficients, go through n and count the primes. Return the value of a and b that has more primes.
-let n = give_array(0,1000);
-largest = (obj1, obj2) =>{return obj1.prime_count > obj2.prime_count? obj1:obj2}
-// let res = a.map(as => b.map(bs => n.map(ns => cuadratic(ns,as,bs))))
-
+//Evaluation
 let res = a.map(as =>
               b.map(
                 bs => {
                   let newObj = {}
                   newObj['a'] = as
                   newObj['b'] = bs
-                  newObj['prime_count'] = n.filter(ns => {return is_prime(cuadratic(ns,as,bs))}).length
-                  console.log(newObj)
+                  newObj['consecutive_primes'] = consecutivePrimes(as,bs,cuadratic)
                   return newObj
                 }
               ).reduce(largest)
             ).reduce(largest)
 
-let result = res['a']*res['b']
-console.log(result)
-
-
-//test reduce pattern
-
-// let numbers = [1,2,3,4,5,6,7,8,
-//Number of primes
-// console.log(numbers.filter(x => {return is_prime(x)}).length)
+console.log('a: '+res['a']+', b: '+res['b']+', result = '+(res['a']*res['b']))
