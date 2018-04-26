@@ -1,4 +1,8 @@
+#Project Euler problem 27.
+I worked this one trying to apply functional programming techniques, as a way to practice using map, reduce, filter, and pure functions.
 
+
+PROBLEM
 Euler discovered the remarkable quadratic formula:
 
 n2+n+41
