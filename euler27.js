@@ -36,16 +36,14 @@ let consecutivePrimes = (a,b,fn) => {
   return count
 }
 
-let a = b = give_array(-1000,1000);
-
 //Evaluation
-let res = a.map(as =>
-              b.map(
-                bs => {
+let res = give_array(-1000,1000).map(a =>
+              give_array(-1000,1000).map(
+                b => {
                   let newObj = {}
-                  newObj['a'] = as
-                  newObj['b'] = bs
-                  newObj['consecutive_primes'] = consecutivePrimes(as,bs,cuadratic)
+                  newObj['a'] = a
+                  newObj['b'] = b
+                  newObj['consecutive_primes'] = consecutivePrimes(a,b,cuadratic)
                   return newObj
                 }
               ).reduce(largest)
