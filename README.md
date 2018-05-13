@@ -1,4 +1,5 @@
 #Project Euler problem 27.
+
 I worked this one trying to apply functional programming techniques, as a way to practice using map, reduce, filter, and pure functions.
 
 
@@ -17,3 +18,9 @@ n2+an+b, where |a|<1000 and |b|≤1000
 where |n| is the modulus/absolute value of n
 e.g. |11|=11 and |−4|=4
 Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n=0.
+
+HOW TO RUN
+1. Download files
+2. Go to the directory
+3. Run $ node euler27.js (need node installed)
+4. Follow me on git-hub!
