@@ -36,7 +36,6 @@ let consecutivePrimes = (a,b,fn) => {
   return count
 }
 
-//Evaluation
 let res = give_array(-1000,1000).map(a =>
               give_array(-1000,1000).map(
                 b => {
